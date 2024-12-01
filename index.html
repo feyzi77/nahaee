@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HMSTR Mining Project</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <style>
+        /* استایل‌های CSS */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(145deg, #1d2671, #c33764);
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            text-align: center;
+        }
+        button {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(145deg, #ff512f, #dd2476);
+            color: #fff;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>HMSTR Mining Project</h1>
+        <p>Your gateway to mining rewards!</p>
+    </header>
+
+    <div>
+        <h3>Hello, <span id="telegram-username">Guest</span>!</h3>
+        <button onclick="connectWallet()">Connect to Wallet</button>
+        <button onclick="makePayment()">Pay 400 HMSTR Now</button>
+        <button onclick="withdrawRewards()">Withdraw Rewards</button>
+    </div>
+
+    <script>
+        // دکمه اتصال به کیف پول
+        function connectWallet() {
+            // اتصال به کیف پول (مثال)
+            alert('Wallet connected successfully!');
+        }
+
+        // دکمه پرداخت
+        function makePayment() {
+            fetch('/payment?username=Guest', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ wallet_address: 'UQBGPcjpLyLOkCjdMt2mw-f1adTJZZTV4AOwM90edhSRjjN3', amount: 400 }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert(data.message);
+            })
+            .catch(error => alert('Error during payment'));
+        }
+
+        // دکمه برداشت پاداش
+        function withdrawRewards() {
+            fetch('/rewards/withdraw?username=Guest', {
+                method: 'POST',
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert(data.message);
+            })
+            .catch(error => alert('Error during withdrawal'));
+        }
+    </script>
+
+</body>
+</html>
